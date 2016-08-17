@@ -1,4 +1,5 @@
 import Pages.RegistrationPages.SignUpPage;
+import Pages.RegistrationPages.TeamMembersPage;
 import Pages.RegistrationPages.TeamPage;
 import Utils.Utils;
 import com.codeborne.selenide.Configuration;
@@ -6,6 +7,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import org.testng.annotations.*;
 
 import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 
@@ -52,6 +54,7 @@ public class TeamTest {
     @Test
     public void correctValues() {
         teamPage.fillCorrectValuesAndSubmit("Mega Team !!", TeamPage.CompanySize.SIZE_6_10, "+7(111) 410-29-00");
+        $(withText(TeamMembersPage.Texts.TEAM_MEMBERS_CAPTION.getText(locale))).shouldBe(visible);
     }
 
 }
