@@ -1,0 +1,53 @@
+group 'com.rtb'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: "groovy"
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+//noinspection GroovyAssignabilityCheck
+dependencies {
+    testCompile 'org.testng:testng:6.9.10'
+    testCompile 'com.codeborne:selenide:3.7'
+    testCompile 'com.google.guava:guava:19.0'
+}
+
+task firefoxTest(type: Test) {
+    //noinspection GroovyAssignabilityCheck
+    systemProperties['testdriver.env'] = 'firefox'
+    enabled = false
+}
+
+task phantomJsTest(type: Test) {
+    systemProperties['testdriver.env'] = 'phantomJs'
+    enabled = false
+}
+
+task chromeTest(type: Test) {
+    systemProperties['testdriver.env'] = 'chrome'
+    systemProperties['webdriver.chrome.driver'] = '/usr/bin/chromedriver'
+}
+
+tasks.withType(Test).all { testTask ->
+    useTestNG() {
+        suites 'Tests/testng.xml'
+    }
+
+    testLogging.showStandardStreams = false
+    minHeapSize = "128m"
+    maxHeapSize = "512m"
+    systemProperty "build.baseUrl", "https://realtimeboard.com/"
+}
+
+//noinspection GroovyAssignabilityCheck
+sourceSets {
+    test {
+        java {
+            srcDir 'Tests/src'
+        }
+    }
+}
