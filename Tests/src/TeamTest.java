@@ -1,6 +1,7 @@
 import Pages.RegistrationPages.SignUpPage;
 import Pages.RegistrationPages.TeamMembersPage;
 import Pages.RegistrationPages.TeamPage;
+import Pages.Texts;
 import Utils.Utils;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
@@ -42,19 +43,19 @@ public class TeamTest {
     @Test
     public void teamSizeIsNotSelected() {
         teamPage.fillIncorrectValuesAndSubmit("team", TeamPage.CompanySize.EMPTY, "123");
-        $(withText(TeamPage.TeamErrorPage.Texts.SELECT_COMPANY_SIZE_ALERT.getText(locale))).should(appear);
+        $(withText(Texts.TEAMPAGE_SELECT_COMPANY_SIZE_ALERT.getText(locale))).should(appear);
     }
 
     @Test
     public void emptyTeamName() {
         teamPage.fillIncorrectValuesAndSubmit("", TeamPage.CompanySize.SIZE_6_10, "123");
-        $(withText(TeamPage.TeamErrorPage.Texts.INPUT_COMPANY_NAME_ALERT.getText(locale))).should(appear);
+        $(withText(Texts.TEAMPAGE_INPUT_COMPANY_NAME_ALERT.getText(locale))).should(appear);
     }
 
     @Test
     public void correctValues() {
         teamPage.fillCorrectValuesAndSubmit("Mega Team !!", TeamPage.CompanySize.SIZE_6_10, "+7(111) 410-29-00");
-        $(withText(TeamMembersPage.Texts.TEAM_MEMBERS_CAPTION.getText(locale))).shouldBe(visible);
+        $(withText(Texts.TEAMMEMBERS_CAPTION.getText(locale))).shouldBe(visible);
     }
 
 }

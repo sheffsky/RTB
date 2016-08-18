@@ -8,29 +8,6 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class TeamPage {
 
-    public enum Texts {
-        ADD_TEAM_DETAILS_CAPTION("Add your team details", "Add your team details");
-
-        private final String nameEn;
-        private final String nameRu;
-
-        Texts(String en, String ru) {
-            nameEn = en;
-            nameRu = ru;
-        }
-
-        public String getText(String locale) {
-            switch (locale) {
-                case "ru":
-                    return nameRu;
-                case "en":
-                    return nameEn;
-                default:
-                    return nameEn;
-            }
-        }
-    }
-
     public enum CompanySize {
         EMPTY(""),
         SIZE_2_5("2 - 5"),
@@ -71,30 +48,6 @@ public class TeamPage {
     }
 
     public static class TeamErrorPage {
-
-        public enum Texts {
-            SELECT_COMPANY_SIZE_ALERT("Please select company size", "Please select company size"),
-            INPUT_COMPANY_NAME_ALERT("Please enter a team name", "Please enter a team name");
-
-            private final String nameEn;
-            private final String nameRu;
-
-            Texts(String en, String ru) {
-                nameEn = en;
-                nameRu = ru;
-            }
-
-            public String getText(String locale) {
-                switch (locale) {
-                    case "ru":
-                        return nameRu;
-                    case "en":
-                        return nameEn;
-                    default:
-                        return nameEn;
-                }
-            }
-        }
 
     }
 

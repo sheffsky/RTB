@@ -1,5 +1,6 @@
 import Pages.RegistrationPages.SignUpPage;
 import Pages.RegistrationPages.TeamPage;
+import Pages.Texts;
 import Utils.Utils;
 import com.codeborne.selenide.*;
 import com.codeborne.selenide.Configuration;
@@ -37,7 +38,7 @@ public class SignUpTest {
     @Test(dataProvider = "createIncorrectNonEmptyPasswords")
     public void incorrectPasswords(String password) {
         signUpPage.fillIncorrectValuesAndSubmit("Tester", "test@test.com", password);
-        $(withText(SignUpPage.SignUpErrorPage.Texts.PASSWORD_MORE_THAN_6.getText(locale))).shouldBe(visible);
+        $(withText(Texts.SIGNUPPAGE_PASSWORD_MORE_THAN_6.getText(locale))).shouldBe(visible);
     }
 
     @DataProvider
@@ -53,7 +54,7 @@ public class SignUpTest {
     @Test(dataProvider = "createEmptyPasswords")
     public void emptyPasswords(String password) {
         signUpPage.fillIncorrectValuesAndSubmit("Tester", "test@test.com", password);
-        $(withText(SignUpPage.SignUpErrorPage.Texts.ENTER_YOUR_PASSWORD.getText(locale))).shouldBe(visible);
+        $(withText(Texts.SIGNUPPAGE_ENTER_YOUR_PASSWORD.getText(locale))).shouldBe(visible);
     }
 
     @DataProvider
@@ -67,27 +68,27 @@ public class SignUpTest {
     @Test
     public void allEmptyValues() {
         signUpPage.fillIncorrectValuesAndSubmit("", "", "");
-        $(withText(SignUpPage.SignUpErrorPage.Texts.ENTER_YOUR_NAME.getText(locale))).shouldBe(visible);
-        $(withText(SignUpPage.SignUpErrorPage.Texts.ENTER_YOUR_EMAIL.getText(locale))).shouldBe(visible);
-        $(withText(SignUpPage.SignUpErrorPage.Texts.ENTER_YOUR_PASSWORD.getText(locale))).shouldBe(visible);
+        $(withText(Texts.SIGNUPPAGE_ENTER_YOUR_NAME.getText(locale))).shouldBe(visible);
+        $(withText(Texts.SIGNUPPAGE_ENTER_YOUR_EMAIL.getText(locale))).shouldBe(visible);
+        $(withText(Texts.SIGNUPPAGE_ENTER_YOUR_PASSWORD.getText(locale))).shouldBe(visible);
     }
 
     @Test
     public void emptyEmail() {
         signUpPage.fillIncorrectValuesAndSubmit("Tester", "", "password");
-        $(withText(SignUpPage.SignUpErrorPage.Texts.ENTER_YOUR_EMAIL.getText(locale))).shouldBe(visible);
+        $(withText(Texts.SIGNUPPAGE_ENTER_YOUR_EMAIL.getText(locale))).shouldBe(visible);
     }
 
     @Test
     public void emptyName() {
         signUpPage.fillIncorrectValuesAndSubmit("", "test@test.com", "password");
-        $(withText(SignUpPage.SignUpErrorPage.Texts.ENTER_YOUR_NAME.getText(locale))).shouldBe(visible);
+        $(withText(Texts.SIGNUPPAGE_ENTER_YOUR_NAME.getText(locale))).shouldBe(visible);
     }
 
     @Test(dataProvider = "createIncorrectEmails")
     public void incorrectEmail(String email) {
         signUpPage.fillIncorrectValuesAndSubmit("Tester", email, "password");
-        $(withText(SignUpPage.SignUpErrorPage.Texts.INCORRECT_EMAIL.getText(locale))).shouldBe(visible);
+        $(withText(Texts.SIGNUPPAGE_INCORRECT_EMAIL.getText(locale))).shouldBe(visible);
     }
 
     @DataProvider
@@ -104,7 +105,7 @@ public class SignUpTest {
     public void correctValues() {
         String email = utils.generateUniqueCorrectEmail();
         signUpPage.fillCorrectValuesAndSubmit("Tester", email, "pAsSwoRd");
-        $(withText(TeamPage.Texts.ADD_TEAM_DETAILS_CAPTION.getText(locale))).shouldBe(visible);
+        $(withText(Texts.TEAMPAGE_ADD_TEAM_DETAILS_CAPTION.getText(locale))).shouldBe(visible);
     }
 
 
