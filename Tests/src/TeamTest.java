@@ -1,8 +1,7 @@
 import Pages.RegistrationPages.SignUpPage;
-import Pages.RegistrationPages.TeamMembersPage;
 import Pages.RegistrationPages.TeamPage;
 import Pages.Texts;
-import Utils.Utils;
+import Utils.*;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import org.testng.annotations.*;
@@ -36,7 +35,7 @@ public class TeamTest {
     @BeforeMethod
     public void preparePage() {
         signUpPage = new SignUpPage();
-        String email = utils.generateUniqueCorrectEmail();
+        String email = Helpers.generateUniqueCorrectEmail();
         teamPage = signUpPage.fillCorrectValuesAndSubmit("Tester", email, "password");
     }
 

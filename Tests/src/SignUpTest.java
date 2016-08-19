@@ -1,7 +1,6 @@
 import Pages.RegistrationPages.SignUpPage;
-import Pages.RegistrationPages.TeamPage;
 import Pages.Texts;
-import Utils.Utils;
+import Utils.*;
 import com.codeborne.selenide.*;
 import com.codeborne.selenide.Configuration;
 import org.testng.annotations.*;
@@ -103,7 +102,7 @@ public class SignUpTest {
 
     @Test
     public void correctValues() {
-        String email = utils.generateUniqueCorrectEmail();
+        String email = Helpers.generateUniqueCorrectEmail();
         signUpPage.fillCorrectValuesAndSubmit("Tester", email, "pAsSwoRd");
         $(withText(Texts.TEAMPAGE_ADD_TEAM_DETAILS_CAPTION.getText(locale))).shouldBe(visible);
     }

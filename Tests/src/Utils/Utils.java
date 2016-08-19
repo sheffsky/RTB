@@ -24,8 +24,4 @@ public class Utils {
                 return new HtmlUnitDriver(true);
         }
     }
-
-    public String generateUniqueCorrectEmail() {
-        return System.currentTimeMillis() + "@test.com";
-    }
 }
