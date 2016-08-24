@@ -1,33 +1,12 @@
 import Pages.RegistrationPages.SignUpPage;
-import Pages.Texts;
 import Utils.*;
-import com.codeborne.selenide.*;
-import com.codeborne.selenide.Configuration;
 import org.testng.annotations.*;
 
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.withText;
-import static com.codeborne.selenide.Selenide.$;
 
-public class SignUpTest {
+public class SignUpTest extends RtbTest {
 
     private SignUpPage signUpPage;
-    private String locale;
-
-    private Utils utils = new Utils();
-
-    @BeforeClass
-    public void setUp() {
-        WebDriverRunner.setWebDriver(utils.getWebDriver());
-        locale = "en"; //todo: get locale from gradle or testng param
-        String url = System.getProperty("build.baseUrl", "https://realtimeboard.com/");
-        Configuration.baseUrl = url + locale + "/";
-    }
-
-    @AfterClass
-    public void tearDown() {
-        WebDriverRunner.closeWebDriver();
-    }
 
     @BeforeMethod
     public void preparePage() {
@@ -37,7 +16,7 @@ public class SignUpTest {
     @Test(dataProvider = "createIncorrectNonEmptyPasswords")
     public void incorrectPasswords(String password) {
         signUpPage.fillIncorrectValuesAndSubmit("Tester", "test@test.com", password);
-        $(withText(Texts.SIGNUPPAGE_PASSWORD_MORE_THAN_6.getText(locale))).shouldBe(visible);
+        signUpPage.needPasswordMoreThan6LettersText.shouldBe(visible);
     }
 
     @DataProvider
@@ -53,7 +32,7 @@ public class SignUpTest {
     @Test(dataProvider = "createEmptyPasswords")
     public void emptyPasswords(String password) {
         signUpPage.fillIncorrectValuesAndSubmit("Tester", "test@test.com", password);
-        $(withText(Texts.SIGNUPPAGE_ENTER_YOUR_PASSWORD.getText(locale))).shouldBe(visible);
+        signUpPage.enterYourPasswordText.shouldBe(visible);
     }
 
     @DataProvider
@@ -67,27 +46,27 @@ public class SignUpTest {
     @Test
     public void allEmptyValues() {
         signUpPage.fillIncorrectValuesAndSubmit("", "", "");
-        $(withText(Texts.SIGNUPPAGE_ENTER_YOUR_NAME.getText(locale))).shouldBe(visible);
-        $(withText(Texts.SIGNUPPAGE_ENTER_YOUR_EMAIL.getText(locale))).shouldBe(visible);
-        $(withText(Texts.SIGNUPPAGE_ENTER_YOUR_PASSWORD.getText(locale))).shouldBe(visible);
+        signUpPage.enterYourNameText.shouldBe(visible);
+        signUpPage.enterYourEmailText.shouldBe(visible);
+        signUpPage.enterYourPasswordText.shouldBe(visible);
     }
 
     @Test
     public void emptyEmail() {
         signUpPage.fillIncorrectValuesAndSubmit("Tester", "", "password");
-        $(withText(Texts.SIGNUPPAGE_ENTER_YOUR_EMAIL.getText(locale))).shouldBe(visible);
+        signUpPage.enterYourEmailText.shouldBe(visible);
     }
 
     @Test
     public void emptyName() {
         signUpPage.fillIncorrectValuesAndSubmit("", "test@test.com", "password");
-        $(withText(Texts.SIGNUPPAGE_ENTER_YOUR_NAME.getText(locale))).shouldBe(visible);
+        signUpPage.enterYourNameText.shouldBe(visible);
     }
 
     @Test(dataProvider = "createIncorrectEmails")
     public void incorrectEmail(String email) {
         signUpPage.fillIncorrectValuesAndSubmit("Tester", email, "password");
-        $(withText(Texts.SIGNUPPAGE_INCORRECT_EMAIL.getText(locale))).shouldBe(visible);
+        signUpPage.incorrectEmailText.shouldBe(visible);
     }
 
     @DataProvider
@@ -104,7 +83,7 @@ public class SignUpTest {
     public void correctValues() {
         String email = Helpers.generateUniqueCorrectEmail();
         signUpPage.fillCorrectValuesAndSubmit("Tester", email, "pAsSwoRd");
-        $(withText(Texts.TEAMPAGE_ADD_TEAM_DETAILS_CAPTION.getText(locale))).shouldBe(visible);
+        signUpPage.addTeamDetailsText.shouldBe(visible);
     }
 
 

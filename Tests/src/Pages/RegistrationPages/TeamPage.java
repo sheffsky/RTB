@@ -1,6 +1,8 @@
 package Pages.RegistrationPages;
 
+import Pages.Texts;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selectors.withText;
@@ -46,6 +48,12 @@ public class TeamPage {
         fillValuesAndSubmit(team, companySize, phone);
         return new TeamMembersPage();
     }
+
+    public SelenideElement selectCompanySizeText
+            = $(withText(Texts.Constants.TEAMPAGE_SELECT_COMPANY_SIZE_ALERT.toString()));
+
+    public SelenideElement inputCompanyNameText
+            = $(withText(Texts.Constants.TEAMPAGE_INPUT_COMPANY_NAME_ALERT.toString()));
 
     public static class TeamErrorPage {
 

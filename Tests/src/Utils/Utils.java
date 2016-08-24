@@ -7,7 +7,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 public class Utils {
-    public WebDriver getWebDriver() {
+    public static WebDriver getWebDriver() {
         String driver = System.getProperty("testdriver.env", "chrome");
 
         switch (driver)
