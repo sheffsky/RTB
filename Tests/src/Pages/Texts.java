@@ -18,7 +18,7 @@ public class Texts {
     public enum Constants {
         TEAMPAGE_ADD_TEAM_DETAILS_CAPTION("Add your team details", "Добавьте информацию о вашей команде"),
         TEAMPAGE_SELECT_COMPANY_SIZE_ALERT("Please select company size", "Please select company size"),
-        TEAMPAGE_INPUT_COMPANY_NAME_ALERT("Please enter a team name", "Please enter a team name"),
+        TEAMPAGE_INPUT_COMPANY_NAME_ALERT("Please enter a Team name", "Please enter a Team name"),
         TEAMMEMBERS_CAPTION("Who's on your team?", "Кто в вашей команде?"),
         SIGNUPPAGE_ENTER_YOUR_NAME("Please enter your name",
                 "Пожалуйста, введите свое имя"),
