@@ -11,7 +11,7 @@ repositories {
 //noinspection GroovyAssignabilityCheck
 dependencies {
     testCompile 'org.testng:testng:6.9.10'
-    testCompile 'com.codeborne:selenide:3.7'
+    testCompile 'com.codeborne:selenide:4.0'
     testCompile 'com.google.guava:guava:19.0'
 }
 
@@ -29,6 +29,12 @@ task phantomJsTest(type: Test) {
 task chromeTest(type: Test) {
     systemProperties['testdriver.env'] = 'chrome'
     systemProperties['webdriver.chrome.driver'] = '/usr/bin/chromedriver'
+    enabled = false
+}
+
+task chromeGridTest(type: Test) {
+    systemProperties['testdriver.env'] = 'chromeGrid'
+    systemProperties['remoteurl.env'] = 'http://localhost:4444/wd/hub'
 }
 
 tasks.withType(Test).all { testTask ->
